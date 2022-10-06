@@ -1,4 +1,6 @@
 #pragma once
+#include <glad/glad.h> 
+#include <SDL.h> 
 #include "../Math/Vector2.h"
 #include "Texture.h"
 #include "../Math/Color.h"
@@ -25,7 +27,7 @@ namespace squampernaut
 		void Initialize();
 		void Shutdown();
 
-		void CreateWindow(const char* name, int width, int height);
+		void CreateWindow(const char* name, int width, int height, bool fullscreen);
 		void BeginFrame();
 		void EndFrame();
 		void SetClearColor(const Color color) { m_clearColor = color; }
@@ -58,6 +60,7 @@ namespace squampernaut
 
 		Matrix3x3 m_view;
 		Matrix3x3 m_viewport;
+		SDL_GLContext m_context;
 
 		int m_width;
 		int m_height;
