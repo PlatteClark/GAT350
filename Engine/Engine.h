@@ -36,6 +36,8 @@
 #include "Renderer/Model.h"
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
+#include "Renderer/Shader.h"
+#include "glm/glm.hpp"
 
 #include<memory>
 #include <vector>
