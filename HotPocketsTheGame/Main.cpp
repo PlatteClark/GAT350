@@ -2,21 +2,21 @@
 #include <iostream> 
 
 float points[] = {
-   0.0f,  0.0f, 0.0f,
-   0.0f,  0.5f, 0.0f,
-   -0.5f,  0.0f, 0.0f,
+	 0.0f,  0.0f, 0.0f,
+	 0.0f,  0.5f, 0.0f,
+	-0.5f,  0.0f, 0.0f,
 
 	-0.5f,  0.0f, 0.0f,
     -0.5f,  0.5f, 0.0f,
-	0.0f,  0.5f, 0.0f
+	 0.0f,  0.5f, 0.0f
 
 };
 
 glm::vec3 colors[] = {
 	{0, 0, 1},
 	{1, 0, 1},
-	{1, 1, 1},
 	{0, 1, 0},
+	{0, 0, 1},
 	{0, 1, 1},
 	{1, 1, 1}
 };
@@ -76,12 +76,25 @@ int main(int argc, char** argv)
 	glLinkProgram(program);
 	glad_glUseProgram(program);
 
+	GLint uniform1 = glGetUniformLocation(program, "scale");
+	GLint uniform2 = glGetUniformLocation(program, "tint");
+	GLint uniform3 = glGetUniformLocation(program, "transform");
+
+	glUniform3f(uniform2, 1, 1, 1);
+
+	glm::mat4 mx{ 1 };
+
+
 	bool quit = false;
 	while (!quit)
 	{
 		squampernaut::Engine::Instance().Update();
 
 		if (squampernaut::g_inputSystem.GetKeyState(squampernaut::key_escape) == squampernaut::InputSystem::KeyState::Pressed) quit = true;
+		
+		glUniform1f(uniform1, std::sin(squampernaut::g_time.time * 1));
+		mx = glm::eulerAngleXYZ(0.0f, 0.0f, squampernaut::g_time.time);
+		glUniformMatrix4fv(uniform3, 1, GL_FALSE, glm::value_ptr(mx));
 
 		squampernaut::g_renderer.BeginFrame();
 
