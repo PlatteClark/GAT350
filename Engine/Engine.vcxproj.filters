@@ -314,4 +314,9 @@
       <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Downloads\basic.prog">
+      <Filter>Source\Resource</Filter>
+    </None>
+  </ItemGroup>
 </Project>
