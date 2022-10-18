@@ -33,10 +33,12 @@
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
+#include "Renderer/Material.h"
 #include "Renderer/Model.h"
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
 #include "Renderer/Shader.h"
+#include "Renderer/Program.h"
 #include "glm/glm.hpp"
 
 #include<memory>

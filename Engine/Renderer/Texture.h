@@ -1,37 +1,42 @@
 #pragma once 
-#include "..\Math\Vector2.h" 
-#include "../Resource/Resource.h"
-#include "Renderer.h"
+#include "../Math/Vector2.h" 
+#include "../Resource/Resource.h" 
+#include "Renderer.h" 
 #include <string> 
 
+// !! forward declaration for SDL pointers (SDL likes to use structs instead of classes)
 struct SDL_Texture;
+struct SDL_Surface;
 
 namespace squampernaut
 {
+	// !! forward declaration for Renderer 
 	class Renderer;
-
 
 	class Texture : public Resource
 	{
-		public:
-			Texture() = default;
-			~Texture();
+	public:
+		Texture() = default;
+		~Texture();
 
-			bool Create(std::string filename, ... ) override;
+		bool Create(std::string filename, ...) override;
 
-			bool Create(Renderer& renderer, const std::string& filename);
+		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
-			void Bind() { glBindTexture(m_target, m_texture); }
+		bool Load(const std::string& filename, Renderer& renderer);
 
-			Vector2 GetSize() const;
+		void Bind() { glBindTexture(m_target, m_texture); }
 
-			friend Renderer;
+		Vector2 GetSize() const;
 
-		private:
-			GLuint m_texture { 0 };
-			GLenum m_target = GL_TEXTURE_2D;
-			GLuint m_unit = GL_TEXTURE0;
+		friend class Renderer;
 
-			//SDL_Texture* m_texture = nullptr; //2D stuff, no want no more
+	private:
+		void FlipSurface(SDL_Surface* surface);
+
+	private:
+		GLuint m_texture = 0;
+		GLenum m_target = GL_TEXTURE_2D;
+		GLuint m_unit = GL_TEXTURE0;
 	};
 }
