@@ -8,7 +8,7 @@ out vec3 color;
 out vec2 texcoords;
 
 uniform float scale;
-uniform mat4 transform;
+uniform mat4 mvp;
 
 void main()
 {
@@ -17,7 +17,7 @@ void main()
 
 	texcoords = vtexcoords;
 
-	vec4 tposition = vec4 (vposition * scale, 1.0) * transform;
+	vec4 tposition = mvp * vec4 (vposition * scale, 1.0);
 
 	gl_Position = tposition;
 }
