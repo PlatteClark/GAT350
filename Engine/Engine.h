@@ -32,6 +32,7 @@
 #include "Components/CharacterComponent.h"
 
 #include "Input/InputSystem.h"
+#include "Renderer/VertexBuffer.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Material.h"
 #include "Renderer/Model.h"

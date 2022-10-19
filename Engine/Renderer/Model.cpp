@@ -38,8 +38,8 @@ namespace squampernaut
     }
     void Model::Draw(Renderer& renderer, const Transform& transform)
     {
+        /*
         Matrix3x3 mx = transform.matrix;
-
          //draw model
         for (int i = 0; i < m_points.size() - 1; i++)
         {
@@ -48,6 +48,7 @@ namespace squampernaut
 
             renderer.DrawLine(p1, p2, m_color);
         }
+        */
     }
 
     bool Model::Load(const std::string& filename)

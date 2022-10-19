@@ -1,6 +1,5 @@
 #pragma once
-#include "Matrix2x2.h"
-#include "Matrix3x3.h"
+#include "Vector2.h"
 #include "MathUtils.h"
 #include "../Serialization/Serializable.h"
 
@@ -8,65 +7,42 @@ namespace squampernaut
 {
 	struct Transform : public ISerializable
 	{
+		glm::vec3 position{ 0 };
+		glm::vec3 rotation{ 0 };
+		glm::vec3 scale{ 1, 1, 1 };
+
 		Transform() = default;
-		Transform(const Vector2& position, float rotation, const Vector2& scale) :
+
+		Transform(const glm::vec3& position, glm::vec3 rotation = glm::vec3{ 1, 1, 1}, const glm::vec3& scale = glm::vec3{1, 1, 1}) :
 			position{ position },
 			rotation{ rotation },
 			scale{ scale }{}
 
-		Vector2 position;
-		float rotation{ 0 };
-		Vector2 scale{ 1,1 };
 
-		Matrix3x3 matrix;
+		glm::mat4 matrix;
 
 		virtual bool Write(const rapidjson::Value& value) const override;
-
 		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Update()
 		{
-			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
-
-			matrix = { mxTranslation * mxRotation * mxScale };
+			matrix = *this;
 		}
 
-		void Update(const Matrix3x3& parent)
+		void Update(const glm::mat4& parent)
 		{
-			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
-
-			matrix = { mxTranslation * mxRotation * mxScale };
-			matrix = parent * matrix;
+			matrix = parent * (glm::mat4)*this;
 		}
 
-		operator Matrix3x3 () const
+		operator glm::mat4 () const
 		{
-			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
+			glm::mat4 mxScale = glm::scale(scale);
+			glm::mat4 mxRotation = glm::eulerAngleXYZ( glm::radians(rotation.x), glm::radians( rotation.y), glm::radians( rotation.z));
+			glm::mat4 mxTranslation = glm::translate(position);
 
 			return { mxTranslation * mxRotation * mxScale };
 		}
 
-
-		// Inherited via ISerializable
-
-
 	};
-
-
-			//MIGHT NOT NEED THE 2X2
-		//operator Matrix2x2 () const
-		//{
-		//	Matrix2x2 mxScale = Matrix2x2::CreateScale(scale);
-		//	Matrix2x2 mxRotation = Matrix2x2::CreateRotation(math::DegToRad(rotation));
-
-		//	return { mxScale * mxRotation };
-		//}
-
 
 }

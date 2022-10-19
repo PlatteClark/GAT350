@@ -20,7 +20,8 @@ namespace squampernaut
                     data.size = Vector2{ renderComponent->GetSource().w, renderComponent->GetSource().h };
                 }
             }
-            data.size = data.size * scale_offset;
+
+            //data.size = data.size * scale_offset;
 
             if (component->m_body->GetType() == b2_staticBody)
             {
