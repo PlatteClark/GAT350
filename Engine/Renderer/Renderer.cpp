@@ -2,7 +2,7 @@
 #include <SDL.h> 
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include "../Math/MathUtils.h"
+
 #include "../Math/Transform.h"
 #include "../Math/Rect.h"
 
@@ -14,8 +14,6 @@ namespace squampernaut
 		SDL_Init(SDL_INIT_VIDEO);
 		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 		TTF_Init();
-		m_view = Matrix3x3::identity;
-		m_viewport = Matrix3x3::identity;
 	}
 	void Renderer::Shutdown()
 	{

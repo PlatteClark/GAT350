@@ -16,6 +16,12 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{d23fc6bf-bfe7-4545-aa29-70fa2a9ef567}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Scenes">
+      <UniqueIdentifier>{93c5177a-2f5e-4f6f-a480-05ca0664f768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Materials">
+      <UniqueIdentifier>{2463351e-f497-4d6e-8a61-60e0bcb0ca0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -29,11 +35,17 @@
     <None Include="..\Build\Assets\Shaders\basic.vert">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\Build\Assets\Materials\Box.mtrl">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
     <None Include="..\Build\Assets\Shaders\basic.prog">
       <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\basic.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Box.mtrl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\ogre.mtrl">
+      <Filter>Resource Files\Materials</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -4,9 +4,8 @@
 #include "../Math/Vector2.h"
 #include "Texture.h"
 #include "../Math/Color.h"
+#include "../Math/MathUtils.h"
 #include "../Math/Matrix3x3.h"
-
-
 
 struct SDL_Renderer;
 struct SDL_Window;
@@ -51,15 +50,19 @@ namespace squampernaut
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration = Vector2{ 0.5f,0.5f });
 		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration = Vector2{ 0.5f, 0.5f }, bool flipH = false, bool flipV = false);
 
-		void SetViewMatrix(const Matrix3x3& view) { m_view = view; }
-		void SetViewportMatrix(const Matrix3x3& viewport) { m_viewport = viewport; }
+		const glm::mat4& GetView() { return m_view; }
+		void SetView(const glm::mat4& view) { m_view = view; }
+
+		const glm::mat4& GetProjection() { return m_projection; }
+		void SetProjection(const glm::mat4& projection) { m_projection = projection; }
 
 		friend class Text;
 		friend class Texture;
 	private:
 
-		Matrix3x3 m_view;
-		Matrix3x3 m_viewport;
+		glm::mat4 m_view{ 1 };
+		glm::mat4 m_projection{ 1 };
+
 		SDL_GLContext m_context;
 
 		int m_width;

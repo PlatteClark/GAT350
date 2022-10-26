@@ -14,6 +14,7 @@ namespace squampernaut
 	{
 		REGISTER_CLASS(Actor);
 		REGISTER_CLASS(CameraComponent);
+		REGISTER_CLASS(LightComponent);
 		REGISTER_CLASS(AudioComponent);
 		REGISTER_CLASS(ModelComponent);
 		REGISTER_CLASS(PhysicsComponent);
@@ -23,6 +24,7 @@ namespace squampernaut
 		REGISTER_CLASS(SpriteAnimationComponent);
 		REGISTER_CLASS(CollisionComponent);
 		REGISTER_CLASS(TilemapComponent);
+		REGISTER_CLASS(CameraController);
 	}
 
 	void Engine::Initialize()
