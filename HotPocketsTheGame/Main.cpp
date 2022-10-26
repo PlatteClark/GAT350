@@ -19,19 +19,7 @@ int main(int argc, char** argv)
 	LOG("Window Created...");
 
 	// load scene 
-	auto scene = std::make_unique<squampernaut::Scene>();
-
-	rapidjson::Document document;
-	bool success = squampernaut::json::Load("Scenes/basic.scn", document);
-	if (!success)
-	{
-		LOG("error loading scene file %s.", "Scenes/basic.scn");
-	}
-	else
-	{
-		scene->Read(document);
-		scene->Initialize();
-	}
+	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/basic.scn");
 
 	// create material 
 	std::shared_ptr<squampernaut::Material> material = squampernaut::g_resources.Get<squampernaut::Material>("Materials/ogre.mtrl");

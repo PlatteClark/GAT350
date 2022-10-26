@@ -2,15 +2,15 @@
 #include <list>
 #include <memory>
 #include "Actor.h"
+#include "../Resource/Resource.h"
 
 namespace squampernaut
 {
-
 	class Actor;
 	class Renderer;
 	class Game;
 
-	class Scene : public GameObject, public ISerializable
+	class Scene : public GameObject, public ISerializable, public Resource
 	{
 
 	public:
@@ -22,6 +22,8 @@ namespace squampernaut
 		CLASS_DECLARATION(Scene)
 
 		void Initialize() override;
+
+		virtual bool Create(std::string name, ...) override;
 
 		void Update() override;
 
@@ -47,6 +49,8 @@ namespace squampernaut
 	private:
 		Game* m_game;
 		std::list<std::unique_ptr<Actor>> m_actors;
+
+
 
 	};
 
