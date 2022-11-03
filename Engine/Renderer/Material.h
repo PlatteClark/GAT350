@@ -19,10 +19,12 @@ namespace squampernaut
 		std::shared_ptr<Program> GetProgram() { return m_program; }
 
 	public:
-		glm::vec3 ambient;
-		glm::vec3 diffuse;
-		glm::vec3 specular;
+
+		glm::vec3 color;
 		float shininess = 0;
+
+		glm::vec2 uv_tiling = glm::vec2{ 1, 1 };
+		glm::vec2 uv_offset = glm::vec2{ 0, 0 };
 
 	private:
 		std::shared_ptr<Program> m_program;

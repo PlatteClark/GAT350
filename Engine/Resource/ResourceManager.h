@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <cstdarg>
+#include "../Core/Utilities.h"
 
 
 namespace squampernaut

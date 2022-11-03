@@ -19,11 +19,7 @@ int main(int argc, char** argv)
 	LOG("Window Created...");
 
 	// load scene 
-	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/basic.scn");
-
-	// create material 
-	std::shared_ptr<squampernaut::Material> material = squampernaut::g_resources.Get<squampernaut::Material>("Materials/ogre.mtrl");
-	material->Bind();
+	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/Texture.scn");
 
 	glm::mat4 model{ 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (float)squampernaut::g_renderer.GetWidth() / (float)squampernaut::g_renderer.GetHeight(), 0.01f, 100.0f);
@@ -38,6 +34,19 @@ int main(int argc, char** argv)
 
 		if (squampernaut::g_inputSystem.GetKeyState(squampernaut::key_escape) == squampernaut::InputSystem::KeyState::Pressed) quit = true;
 
+
+		auto actor = scene->GetActorFromName("Ogre");
+		if (actor)
+		{ 
+			actor->m_transform.rotation.y += squampernaut::g_time.deltaTime * 90;
+		}
+
+		/*auto material = squampernaut::g_resources.Get<squampernaut::Material>("Materials/multi.mtrl");
+		if (material)
+		{
+			material->uv_offset.x += squampernaut::g_time.deltaTime;
+		}*/
+
 		scene->Update();
 		squampernaut::g_renderer.BeginFrame();
 		scene->Draw(squampernaut::g_renderer);
@@ -51,8 +60,8 @@ int main(int argc, char** argv)
 }
 
 /* TODO
-create basic_lit.scn.
-change auto scene = squampernaut::g_resources.get(scenestuff) to lit.scn
-get the light scene stuff from teams and put it after the scene stuff.
+
+upper to lower converter assignment. NOV 2nd
+I have the base stuff in there, just need to flesh out.
 
 */

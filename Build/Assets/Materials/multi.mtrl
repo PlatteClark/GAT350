@@ -1,0 +1,15 @@
+{
+  "program": "Shaders/texture_phong.prog",
+  "textures": [
+    "Textures/metal_diffuse.jpg",
+    "Textures/metal_specular.jpg"
+  ],
+  "uv_tiling": [ 1, 1 ],
+  "uv_offset":  [ 0.0, 0.0 ],
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 16
+} 

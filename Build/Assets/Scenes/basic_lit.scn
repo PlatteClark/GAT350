@@ -56,19 +56,19 @@
       "name": "Light",
       "transform": {
         "position": [
-          5,
-          5,
-          5
+          2,
+          0,
+          2
 
         ]
       },
       "components": [
         {
           "type": "LightComponent",
-          "ambient": [
-            0,
-            0,
-            0
+          "color": [
+            1.0,
+            1.0,
+            1.0
           ],
           "diffuse": [
             1,

@@ -16,7 +16,7 @@
         ],
         "rotation": [
           0,
-          180,
+          0,
           0
         ]
       },
@@ -25,6 +25,38 @@
           "type": "ModelComponent",
           "model_name": "Models/ogre.obj",
           "material_name": "Materials/ogre.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light",
+      "transform": {
+        "position": [
+          2,
+          2,
+          2
+
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "diffuse": [
+            1,
+            1,
+            1
+          ],
+          "specular": [
+            1,
+            1,
+            1
+          ]
         }
       ]
     },
@@ -48,38 +80,6 @@
         {
           "type": "CameraController",
           "speed": 4
-        }
-      ]
-    },
-    {
-      "type": "Actor",
-      "name": "Light",
-      "transform": {
-        "position": [
-          5,
-          5,
-          5
-
-        ]
-      },
-      "components": [
-        {
-          "type": "LightComponent",
-          "ambient": [
-            0,
-            0,
-            0
-          ],
-          "diffuse": [
-            1,
-            1,
-            1
-          ],
-          "specular": [
-            1,
-            1,
-            1
-          ]
         }
       ]
     }

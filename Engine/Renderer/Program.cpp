@@ -132,14 +132,14 @@ namespace squampernaut
     {
         GLint uniform = GetUniform(name);
         if (uniform != -1)
-            glUniformMatrix2fv(uniform, 1, GL_FALSE, glm::value_ptr(value));
+            glUniform2fv(uniform, 1, &value[0]);
     }
 
     void Program::SetUniform(const std::string& name, const glm::vec4& value)
     {
         GLint uniform = GetUniform(name);
         if (uniform != -1)
-            glUniformMatrix4fv(uniform, 1, GL_FALSE, glm::value_ptr(value));
+            glUniform4fv(uniform, 1, &value[0]);
     }
 
     void Program::SetUniform(const std::string& name, const glm::mat3& value)
