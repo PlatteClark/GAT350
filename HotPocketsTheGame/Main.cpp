@@ -38,7 +38,14 @@ int main(int argc, char** argv)
 		auto actor = scene->GetActorFromName("Ogre");
 		if (actor)
 		{ 
-			actor->m_transform.rotation.y += squampernaut::g_time.deltaTime * 90;
+			//actor->m_transform.rotation.y += squampernaut::g_time.deltaTime * 90;
+		}
+		actor = scene->GetActorFromName("Light");
+		if (actor)
+		{
+			// move light using sin wave 
+			actor->m_transform.position.x = std::sin(squampernaut::g_time.time);
+			//actor->m_transform.position.y = std::sin(squampernaut::g_time.time);
 		}
 
 		/*auto material = squampernaut::g_resources.Get<squampernaut::Material>("Materials/multi.mtrl");

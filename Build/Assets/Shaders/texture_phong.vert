@@ -14,9 +14,7 @@ uniform mat4 view;
 uniform mat4 projection;
  
 void main()
-{
- 
-	
+{	
 	// create model view matrix
 	mat4 model_view = view * model;
 	// transform normals to view space

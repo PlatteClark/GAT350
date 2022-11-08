@@ -26,6 +26,7 @@ uniform Material material;
 
 layout (binding = 0) uniform sampler2D diffuseMap;
 layout (binding = 1) uniform sampler2D normalMap;
+layout (binding = 2) uniform sampler2D emissiveMap;
 
 void phong( vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 specular)
 {
@@ -50,6 +51,7 @@ void phong( vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out 
 		intensity = pow(intensity, material.shininess);
 		specular = light.color * material.color * intensity;
 	}
+
 }
 
 void main()
@@ -65,7 +67,8 @@ void main()
 	normal = normalize(tbn * normal);
 
 	phong(position, normal, ambient, diffuse, specular);
-
+	
 	vec4 texture_color = texture(diffuseMap, ttexcoord);
+
 	fcolor = vec4(ambient + diffuse, 1) * texture_color + (vec4(specular, 1));
 }

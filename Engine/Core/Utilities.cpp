@@ -22,8 +22,9 @@ namespace squampernaut
 	bool CompareIgnoreCase(const std::string& str1, const std::string& str2)
 	{
 		// if string lengths don't match return false 
-
+		if (str1.length() != str2.length()) { return false; }
 		// returns false if string characters aren't equal 
+
 		return true;
 	}
 	

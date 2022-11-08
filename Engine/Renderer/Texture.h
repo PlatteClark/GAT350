@@ -23,6 +23,8 @@ namespace squampernaut
 
 		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
+		static GLenum GetInternalFormat(GLuint format);
+
 		bool Load(const std::string& filename, Renderer& renderer);
 
 		void SetActive(GLuint unit) { glActiveTexture(unit); }
