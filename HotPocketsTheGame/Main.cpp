@@ -18,8 +18,10 @@ int main(int argc, char** argv)
 
 	LOG("Window Created...");
 
+	squampernaut::g_gui.Initialize(squampernaut::g_renderer);
+
 	// load scene 
-	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/Texture.scn");
+	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/Cube.scn");
 
 	glm::mat4 model{ 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (float)squampernaut::g_renderer.GetWidth() / (float)squampernaut::g_renderer.GetHeight(), 0.01f, 100.0f);
@@ -27,15 +29,18 @@ int main(int argc, char** argv)
 	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 2 };
 	float speed = 3;
 
+	glm::vec3 pos = { 0, 0, 0 };
+
 	bool quit = false;
 	while (!quit)
 	{
 		squampernaut::Engine::Instance().Update();
+		squampernaut::g_gui.BeginFrame(squampernaut::g_renderer);
 
 		if (squampernaut::g_inputSystem.GetKeyState(squampernaut::key_escape) == squampernaut::InputSystem::KeyState::Pressed) quit = true;
 
 
-		auto actor = scene->GetActorFromName("Ogre");
+		auto actor = scene->GetActorFromName("Model");
 		if (actor)
 		{ 
 			//actor->m_transform.rotation.y += squampernaut::g_time.deltaTime * 90;
@@ -44,21 +49,25 @@ int main(int argc, char** argv)
 		if (actor)
 		{
 			// move light using sin wave 
-			actor->m_transform.position.x = std::sin(squampernaut::g_time.time);
+			actor->m_transform.position = pos;
 			//actor->m_transform.position.y = std::sin(squampernaut::g_time.time);
 		}
 
-		/*auto material = squampernaut::g_resources.Get<squampernaut::Material>("Materials/multi.mtrl");
-		if (material)
-		{
-			material->uv_offset.x += squampernaut::g_time.deltaTime;
-		}*/
+		ImGui::Begin("Hello");
+		ImGui::Button("press me");
+		ImGui::SliderFloat3("Position", &pos[0], -5.0f, 5.0f);
+		ImGui::End();
 
 		scene->Update();
 		squampernaut::g_renderer.BeginFrame();
-		scene->Draw(squampernaut::g_renderer);
+
+		scene->PreRender(squampernaut::g_renderer);
+
+		scene->Render(squampernaut::g_renderer);
+		squampernaut::g_gui.Draw();
 
 		squampernaut::g_renderer.EndFrame();
+		squampernaut::g_gui.EndFrame();
 	}
 
 	scene->RemoveAll();
@@ -67,8 +76,5 @@ int main(int argc, char** argv)
 }
 
 /* TODO
-
-upper to lower converter assignment. NOV 2nd
-I have the base stuff in there, just need to flesh out.
 
 */

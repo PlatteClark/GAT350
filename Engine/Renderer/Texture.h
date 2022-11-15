@@ -25,7 +25,7 @@ namespace squampernaut
 
 		static GLenum GetInternalFormat(GLuint format);
 
-		bool Load(const std::string& filename, Renderer& renderer);
+		bool Load(const std::string& filename);
 
 		void SetActive(GLuint unit) { glActiveTexture(unit); }
 
@@ -35,10 +35,10 @@ namespace squampernaut
 
 		friend class Renderer;
 
-	private:
+	protected:
 		void FlipSurface(SDL_Surface* surface);
 
-	private:
+	protected:
 		GLuint m_texture = 0;
 		GLenum m_target = GL_TEXTURE_2D;
 	};

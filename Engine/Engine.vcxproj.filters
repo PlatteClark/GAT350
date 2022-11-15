@@ -39,6 +39,12 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{3f5525e3-2b0d-48fd-a018-0bfdeaaa6231}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\External">
+      <UniqueIdentifier>{1bf21795-0fb4-4993-af2d-c01423fb95d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\External\iamgui">
+      <UniqueIdentifier>{f4585f31-eaf6-43eb-8727-b2586269ab79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -175,6 +181,33 @@
     </ClCompile>
     <ClCompile Include="Core\Utilities.cpp">
       <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui_impl_sdl.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui_tables.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui_widgets.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui_demo.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui_draw.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source\External\iamgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\GUI.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\CubemapTexture.cpp">
+      <Filter>Source\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -348,6 +381,39 @@
     </ClInclude>
     <ClInclude Include="Core\Utilities.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imgui_impl_opengl3_loader.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imgui_impl_sdl.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imgui_internal.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imstb_rectpack.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imstb_textedit.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imstb_truetype.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imconfig.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imgui.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\imgui\imgui_impl_opengl3.h">
+      <Filter>Source\External\iamgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\GUI.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\CubemapTexture.h">
+      <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

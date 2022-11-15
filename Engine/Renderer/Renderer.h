@@ -19,6 +19,10 @@ namespace squampernaut
 	class Renderer
 	{
 	public:
+		glm::vec3 clear_color{ 0, 0, 0 };
+		glm::vec3 ambient_color{ 0, 0, 0 };
+
+	public:
 		//constructer & destructer
 		Renderer() = default;
 		~Renderer() = default;
@@ -29,7 +33,6 @@ namespace squampernaut
 		void CreateWindow(const char* name, int width, int height, bool fullscreen);
 		void BeginFrame();
 		void EndFrame();
-		void SetClearColor(const Color color) { m_clearColor = color; }
 
 		void DrawLine(const Vector2& v1, const Vector2& v2, const Color& color);
 		void DrawLine(float x1, float y1, float x2, float y2);
@@ -58,6 +61,7 @@ namespace squampernaut
 
 		friend class Text;
 		friend class Texture;
+		friend class GUI;
 	private:
 
 		glm::mat4 m_view{ 1 };
@@ -67,8 +71,6 @@ namespace squampernaut
 
 		int m_width;
 		int m_height;
-
-		Color m_clearColor{0, 0, 0, 255};
 
 		SDL_Renderer* m_renderer{ nullptr };
 		SDL_Window* m_window{ nullptr };

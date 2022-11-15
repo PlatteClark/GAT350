@@ -3,6 +3,8 @@
 
 namespace squampernaut
 {
+	class Program;
+
 	class CameraComponent : public Component
 	{
 	public:
@@ -10,7 +12,7 @@ namespace squampernaut
 
 			void Update() override;
 
-
+		void SetProgram(std::shared_ptr<Program> programs);
 		void SetPerspective(float fov, float aspectRatio, float near, float far);
 
 		const glm::mat4& GetProjection() { return m_projection; }
@@ -18,6 +20,7 @@ namespace squampernaut
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
+
 
 	public:
 		glm::mat4 m_projection{ 1 };

@@ -2,6 +2,7 @@
 
 #include "Serialization/Json.h"
 #include "Renderer/Model.h"
+#include "Renderer/GUI.h"
 
 #include "Core/Memory.h"
 #include "Physics/PhysicsSystem.h"
@@ -43,6 +44,8 @@
 #include "Renderer/Shader.h"
 #include "Renderer/Program.h"
 #include "glm/glm.hpp"
+#include "Renderer/Texture.h"
+#include "Renderer/CubemapTexture.h"
 
 #include<memory>
 #include <vector>
@@ -52,6 +55,7 @@
 
 namespace squampernaut
 {
+	extern GUI g_gui;
 	extern InputSystem g_inputSystem;
 	extern PhysicsSystem g_physicsSystem;
 	extern Renderer g_renderer;

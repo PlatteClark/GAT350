@@ -57,6 +57,8 @@ namespace squampernaut
 	extern const uint32_t key_s;
 	extern const uint32_t key_a;
 	extern const uint32_t key_d;
+	extern const uint32_t key_e;
+	extern const uint32_t key_q;
 	extern const uint32_t key_shiftL;
 	extern const uint32_t key_escape;
 

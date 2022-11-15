@@ -6,7 +6,8 @@ namespace squampernaut
 	std::string ToLower(const std::string& str)
 	{
 		std::string lower = str;
-		// convert string characters to lower case 
+		
+		std::transform(str.begin(), str.end(), lower.begin(), ::tolower);
 
 		return lower;
 	}
@@ -15,6 +16,7 @@ namespace squampernaut
 	{
 		std::string upper = str;
 		// convert string characters to upper case 
+		std::transform(str.begin(), str.end(), upper.begin(), ::toupper);
 
 		return upper;
 	}
@@ -24,6 +26,8 @@ namespace squampernaut
 		// if string lengths don't match return false 
 		if (str1.length() != str2.length()) { return false; }
 		// returns false if string characters aren't equal 
+		if (ToLower(str1) != ToLower(str2) ) { return false; }
+		
 
 		return true;
 	}
