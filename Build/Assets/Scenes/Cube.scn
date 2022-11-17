@@ -38,7 +38,7 @@
         {
           "type": "ModelComponent",
           "model_name": "Models/GOOBIN.obj",
-          "material_name": "Materials/ogre.mtrl"
+          "material_name": "Materials/refraction.mtrl"
         }
       ]
     },

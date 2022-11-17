@@ -5,6 +5,10 @@
 
 namespace squampernaut
 {
+	const uint32_t button_left = 0;
+	const uint32_t button_middle = 1;
+	const uint32_t button_right = 2;
+
 	const uint32_t key_space = SDL_SCANCODE_SPACE;
 	const uint32_t key_w = SDL_SCANCODE_W;
 	const uint32_t key_s = SDL_SCANCODE_S;
@@ -21,10 +25,6 @@ namespace squampernaut
 	const uint32_t key_right = SDL_SCANCODE_RIGHT;
 	const uint32_t key_ctrlR = SDL_SCANCODE_RCTRL;
 	const uint32_t key_altR = SDL_SCANCODE_RALT;
-
-	const uint32_t button_left = 0;
-	const uint32_t button_middle = 1;
-	const uint32_t button_right = 2;
 
 	void InputSystem::Initialize()
 	{
@@ -53,16 +53,18 @@ namespace squampernaut
 		const uint8_t* keyboardState = SDL_GetKeyboardState(nullptr);
 		std::copy(keyboardState, keyboardState + m_numKeys, m_keyboardState.begin());
 
+		m_prevMouseButtonState = m_mouseButtonState;
 			//get current mouse state
 		int x, y;
 		uint32_t buttons = SDL_GetMouseState(&x, &y);
+		m_mousePosition = glm::vec2{ float(x) , float(y) };
+		m_mouseRelative = m_mousePosition - m_prevMousePosition;
+		m_prevMousePosition = m_mousePosition;	
 
-		m_prevMouseButtonState = m_mouseButtonState;
-		
-		m_mousePosition = squampernaut::Vector2{ x , y };
 		m_mouseButtonState[0] = buttons & SDL_BUTTON_LMASK; // buttons [0001] & [0RML] 
 		m_mouseButtonState[1] = buttons & SDL_BUTTON_MMASK; // buttons [0010] & [0RML] 
 		m_mouseButtonState[2] = buttons & SDL_BUTTON_RMASK; // buttons [0100] & [0RML] 
+
 
 	}
 	InputSystem::KeyState InputSystem::GetKeyState(int key)

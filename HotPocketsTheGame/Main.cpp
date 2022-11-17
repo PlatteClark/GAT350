@@ -29,8 +29,8 @@ int main(int argc, char** argv)
 	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 2 };
 	float speed = 3;
 
-	glm::vec3 pos = { 0, 0, 0 };
-
+	glm::vec3 rot = { 0, 0, 0 };
+	float ri = 1;
 	bool quit = false;
 	while (!quit)
 	{
@@ -43,19 +43,26 @@ int main(int argc, char** argv)
 		auto actor = scene->GetActorFromName("Model");
 		if (actor)
 		{ 
-			//actor->m_transform.rotation.y += squampernaut::g_time.deltaTime * 90;
+			actor->m_transform.rotation = math::EulerToQuaternion(rot);
 		}
 		actor = scene->GetActorFromName("Light");
 		if (actor)
 		{
 			// move light using sin wave 
-			actor->m_transform.position = pos;
+			//actor->m_transform.position = pos;
 			//actor->m_transform.position.y = std::sin(squampernaut::g_time.time);
 		}
 
-		ImGui::Begin("Hello");
-		ImGui::Button("press me");
-		ImGui::SliderFloat3("Position", &pos[0], -5.0f, 5.0f);
+		auto program = squampernaut::g_resources.Get<squampernaut::Program>("Shaders/FX/refraction.prog");
+		if (program)
+		{
+			program->Use();
+			program->SetUniform("ri", ri);
+		}
+
+		ImGui::Begin("Transform");
+		ImGui::DragFloat3("Rotation", &rot[0]);
+		ImGui::DragFloat("Refraction Index", &ri, 0.01f, 1, 3);
 		ImGui::End();
 
 		scene->Update();
