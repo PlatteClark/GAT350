@@ -46,6 +46,7 @@
 #include "glm/glm.hpp"
 #include "Renderer/Texture.h"
 #include "Renderer/CubemapTexture.h"
+#include "Renderer/Framebuffer.h"
 
 #include<memory>
 #include <vector>

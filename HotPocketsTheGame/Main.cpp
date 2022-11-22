@@ -17,11 +17,20 @@ int main(int argc, char** argv)
 	squampernaut::g_renderer.CreateWindow("Game", 800, 600, false);
 
 	LOG("Window Created...");
-
 	squampernaut::g_gui.Initialize(squampernaut::g_renderer);
 
+		//create framebuffer
+	auto texture = std::make_shared<squampernaut::Texture>();
+	texture->CreateTexture(512, 512);
+	squampernaut::g_resources.Add<squampernaut::Texture>("fb_texture", texture);
+
+		//create framebuffer
+	auto framebuffer = squampernaut::g_resources.Get<squampernaut::Framebuffer>("framebuffer", "fb_texture");
+	framebuffer->Unbind();
+
+
 	// load scene 
-	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/Cube.scn");
+	auto scene = squampernaut::g_resources.Get<squampernaut::Scene>("Scenes/rtt.scn");
 
 	glm::mat4 model{ 1 };
 	glm::mat4 projection = glm::perspective(45.0f, (float)squampernaut::g_renderer.GetWidth() / (float)squampernaut::g_renderer.GetHeight(), 0.01f, 100.0f);
@@ -66,11 +75,37 @@ int main(int argc, char** argv)
 		ImGui::End();
 
 		scene->Update();
+
+		{
+			auto actor = scene->GetActorFromName("RTT");
+			if (actor)
+			{
+				actor->SetActive(false);
+			}
+		}
+
+			//render pass 1 (render to framebuffer)
+		glViewport(0, 0, 512, 512);
+		framebuffer->Bind();
 		squampernaut::g_renderer.BeginFrame();
-
 		scene->PreRender(squampernaut::g_renderer);
-
 		scene->Render(squampernaut::g_renderer);
+		framebuffer->Unbind();
+
+		{
+			auto actor = scene->GetActorFromName("RTT");
+			if (actor)
+			{
+				actor->SetActive(true);
+			}
+		}
+
+			//render pass 2 (render to sceen)
+		glViewport(0, 0, 800, 600);
+		squampernaut::g_renderer.BeginFrame();
+		scene->PreRender(squampernaut::g_renderer);
+		scene->Render(squampernaut::g_renderer);
+
 		squampernaut::g_gui.Draw();
 
 		squampernaut::g_renderer.EndFrame();

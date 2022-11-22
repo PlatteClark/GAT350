@@ -26,6 +26,9 @@ namespace squampernaut
 		template <typename T>
 		std::vector<std::shared_ptr<T>> Get();
 
+		template< typename T>
+		void Add(const std::string& name, std::shared_ptr<T> resource);
+
 	private:
 		
 			//map< key, data >
@@ -35,17 +38,18 @@ namespace squampernaut
 	template<typename T, typename ... Targs>
 	inline std::shared_ptr<T> ResourceManager::Get(std::string name, Targs ... args)
 	{
-		if (m_resources.find(name) != m_resources.end())
+		std::string lowerName = ToLower(name);
+		if (m_resources.find(lowerName) != m_resources.end())
 		{
 				//found
-			return std::dynamic_pointer_cast<T>(m_resources[name]);
+			return std::dynamic_pointer_cast<T>(m_resources[lowerName]);
 		}
 		else
 		{
 				//no finded
 			std::shared_ptr<T> resource = std::make_shared<T>();
 			resource->Create(name, args ... );
-			m_resources[name] = resource;
+			m_resources[lowerName] = resource;
 
 			return resource;
 		}
@@ -67,6 +71,13 @@ namespace squampernaut
 		}
 
 		return result;
+	}
+
+	template<typename T>
+	inline void ResourceManager::Add(const std::string& name, std::shared_ptr<T> resource)
+	{
+		std::string lowerName = ToLower(name);
+		m_resources[lowerName] = resource;
 	}
 
 }
